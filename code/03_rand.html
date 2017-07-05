@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="ajax.js"></script>
+		<script>
+			onload = function(){
+				
+				var oList = document.getElementById("list");
+				
+				ajax({
+					type:"get",
+					url: "http://60.205.181.47/myPHPCode4/getRank.php",
+					data: {},
+					async: true,
+					success:function(data){
+						console.log(data);
+						
+						var arr = JSON.parse(data);
+						
+						for (var i=0; i<arr.length; i++){
+							var obj = arr[i];
+							
+							//创建节点
+							var li = document.createElement("li");
+							li.innerHTML = obj.name + " : " + obj.score;
+							oList.appendChild(li);
+						}
+						
+					}
+				})
+				
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="list"></ul>
+	</body>
+</html>

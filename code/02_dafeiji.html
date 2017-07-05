@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<link rel="stylesheet" href="css/dafeiji.css" />
+		<link rel="stylesheet" type="text/less" href="css/dafeiji.less"/>
+		<script type="text/javascript" src="node_modules/less/dist/less.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/gameEngine.js"></script>
+		<script src="js/myplane.js"></script>
+		<script src="js/bullet.js"></script>
+		<script src="js/enemy.js"></script>
+		<script src="ajax.js"></script>
+		
+		<script>
+			onload = function(){
+				
+				//微信打飞机
+				//面向对象
+				
+				//游戏引擎gameEngine：对象
+				//我的飞机myPlane： 对象
+				//子弹Bullet： 构造函数
+				//敌机Enemy： 构造函数
+				
+				
+				//给li添加点击事件
+				var oList = document.getElementById("list");
+				var aLi = oList.getElementsByTagName("li");
+				
+				for (var i=0; i<aLi.length; i++){
+					aLi[i].onclick = function(){
+						
+						//移除oList
+						oList.parentNode.removeChild(oList); 
+						
+						//设置子弹的发射间隔
+						myPlane.fireInterval = this.value;
+						
+						
+						//初始化并开始游戏
+						gameEngine.init().start();
+						
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="main">
+			<ul id="list">
+				<li value="1000">超级困难</li>
+				<li value="600">非常困难</li>
+				<li value="350">比较困难</li>
+				<li value="150">春哥附体</li>
+			</ul>
+		</div>
+	</body>
+</html>
